@@ -1,0 +1,12 @@
+import debug from 'debug';
+
+import ConfigDev from './Config.dev';
+
+const log = debug('luna:Config');
+
+export default (() => {
+  log('RUN_MODE', process.env.RUN_MODE);
+  if (process.env.RUN_MODE === 'development') {
+    return new ConfigDev();
+  }
+})();
