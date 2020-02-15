@@ -2,7 +2,7 @@ import WeatherController from '@/controllers/weather/WeatherController';
 import { LunaContext, LunaPage } from '@/models/common/interfaces/ILunaPage';
 import { LunaReq } from '@/models/common/interfaces/IServer';
 import { IWeatherCity } from '@/models/weather/interfaces/IWeatherCity';
-import WeatherQuery from '@/query/weather/WeatherQuery';
+import WeatherHourlyQuery from '@/query/weather/WeatherHourlyQuery';
 import debug from 'debug';
 import React from 'react';
 
@@ -29,9 +29,8 @@ Home.getInitialProps = async ({
     return defaultWeather as IHomeProps;
   }
 
-  const query = new WeatherQuery({
-    prefix: req.Config.WeatherAPI,
-    path: 'weather',
+  const query = new WeatherHourlyQuery({
+    baseURL: req.Config.ForecastHourlyAPI,
     apiKey: req.Config.APIKey
   });
   const controller = new WeatherController(query, req);

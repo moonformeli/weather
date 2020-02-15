@@ -17,22 +17,13 @@ export default class BaseController<R = {}> extends AxiosController {
   }
 
   @autobind
-  private getURL(url: string): string {
-    if (!!this.req) {
-      return url;
-    }
-    return `api/${url}`;
-  }
-
-  // TODO: url 조립하는 게 너무 번잡함. 시급한 수정이 필요하다
-  @autobind
   protected async call<T>(url: string, config: TRequestConfig) {
     log('call', url, config);
     const { method = '' } = config;
 
     switch (method.toUpperCase()) {
       case 'GET':
-        return await this.get<T>(`http://${this.getURL(url)}`, config);
+        return await this.get<T>(url, config);
       default:
         return Promise.reject();
     }

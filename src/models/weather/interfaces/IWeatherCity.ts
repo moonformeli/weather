@@ -73,7 +73,11 @@ interface IWeatherData {
   ozone: number;
 }
 
-export interface IWeatherCity {
+interface IsError {
+  isError?: boolean;
+}
+
+export interface IWeatherCity extends IsError {
   /* latitude */
   lat: string;
   /* longitude */
@@ -83,4 +87,5 @@ export interface IWeatherCity {
   city_name: string;
   country_code: string;
   state_code: string;
+  data: IWeatherData[];
 }

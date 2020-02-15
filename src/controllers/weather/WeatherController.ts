@@ -1,5 +1,5 @@
 import { LunaRequest } from '@/models/common/interfaces/ILunaPage';
-import WeatherQuery from '@/query/weather/WeatherQuery';
+import WeatherQuery from '@/query/weather/WeatherHourlyQuery';
 import autobind from 'autobind-decorator';
 import debug from 'debug';
 
