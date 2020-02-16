@@ -1,9 +1,8 @@
 import url, { UrlObject } from 'url';
 
-import autobind from 'autobind-decorator';
-import debug from 'debug';
+// import debug from 'debug';
 
-const log = debug('luna:BaseQuery');
+// const log = debug('luna:BaseQuery');
 
 interface IBaseQuery {
   prefix?: string;
@@ -23,8 +22,8 @@ export default class BaseQuery implements IBaseQuery {
   }
 
   // FIXME: Config 에서 프로토콜을 분리할 수 있게되면 여기도 추가 작업 필요하다
-  @autobind
   getQuery(config: UrlObject) {
+    // log('getQuery');
     return url.format(config);
   }
 }

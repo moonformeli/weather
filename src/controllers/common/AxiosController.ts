@@ -1,4 +1,3 @@
-import autobind from 'autobind-decorator';
 import axios, { AxiosRequestConfig } from 'axios';
 import debug from 'debug';
 import HttpStatusCodes from 'http-status-codes';
@@ -8,7 +7,6 @@ import AxiosEither from '../../services/AxiosEither';
 const log = debug('luna:AxiosController');
 
 export default class AxiosController {
-  @autobind
   private isClientError(status: number) {
     return (
       status >= HttpStatusCodes.BAD_REQUEST &&
@@ -16,7 +14,6 @@ export default class AxiosController {
     );
   }
 
-  @autobind
   protected async get<T>(url: string, config: Omit<AxiosRequestConfig, 'url'>) {
     log('get', url);
 

@@ -1,7 +1,4 @@
-import url from 'url';
-
 import { LunaRequest } from '@/models/common/interfaces/ILunaPage';
-import autobind from 'autobind-decorator';
 import { AxiosRequestConfig } from 'axios';
 import debug from 'debug';
 
@@ -16,7 +13,6 @@ export default class BaseController<R = {}> extends AxiosController {
     super();
   }
 
-  @autobind
   protected async call<T>(url: string, config: TRequestConfig) {
     log('call', url, config);
     const { method = '' } = config;

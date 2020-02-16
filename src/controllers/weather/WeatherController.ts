@@ -1,6 +1,5 @@
 import { LunaRequest } from '@/models/common/interfaces/ILunaPage';
 import WeatherQuery from '@/query/weather/WeatherHourlyQuery';
-import autobind from 'autobind-decorator';
 import debug from 'debug';
 
 import BaseController, { TRequestConfig } from '../common/BaseController';
@@ -12,7 +11,6 @@ export default class WeatherController<R> extends BaseController<R> {
     super(req);
   }
 
-  @autobind
   async getCurrentWeather<T>(city: string) {
     log('getCurrentWeather');
     const url = this.query.getCityQuery(city);
