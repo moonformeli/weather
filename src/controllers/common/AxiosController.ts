@@ -4,7 +4,7 @@ import HttpStatusCodes from 'http-status-codes';
 
 import AxiosEither from '../../services/AxiosEither';
 
-const log = debug('luna:AxiosController');
+const log = debug('Luna:AxiosController');
 
 export default class AxiosController {
   private isClientError(status: number) {

@@ -5,7 +5,7 @@ import debug from 'debug';
 import express, { Request } from 'express';
 import next from 'next';
 
-const log = debug('luna:Application');
+const log = debug('Luna:Application');
 
 const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const dev = process.env.NODE_ENV !== 'production';

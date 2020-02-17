@@ -2,7 +2,7 @@ import url, { UrlObject } from 'url';
 
 // import debug from 'debug';
 
-// const log = debug('luna:BaseQuery');
+// const log = debug('Luna:BaseQuery');
 
 interface IBaseQuery {
   prefix?: string;

@@ -2,7 +2,7 @@ import debug from 'debug';
 
 import ConfigDev from './Config.dev';
 
-const log = debug('luna:Config');
+const log = debug('Luna:Config');
 
 export default (() => {
   log('RUN_MODE', process.env.RUN_MODE);

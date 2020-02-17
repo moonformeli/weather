@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "watch": ["src/services/JSCBuilder.ts"],
+  "exec": "ts-node --project tsconfig.dev.json src/services/JSCBuilder.ts",
+  "ext": "ts",
+  "env": {
+    "DEBUG": "Luna:*"
+  }
+}

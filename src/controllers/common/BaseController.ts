@@ -6,7 +6,7 @@ import AxiosController from './AxiosController';
 
 export type TRequestConfig = Omit<AxiosRequestConfig, 'url'>;
 
-const log = debug('luna:BaseController');
+const log = debug('Luna:BaseController');
 
 export default class BaseController<R = {}> extends AxiosController {
   constructor(private req: LunaRequest<R>) {

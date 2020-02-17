@@ -4,7 +4,7 @@ import debug from 'debug';
 
 import BaseController, { TRequestConfig } from '../common/BaseController';
 
-const log = debug('luna:WeatherController');
+const log = debug('Luna:WeatherController');
 
 export default class WeatherController<R> extends BaseController<R> {
   constructor(private query: WeatherQuery, req: LunaRequest<R>) {

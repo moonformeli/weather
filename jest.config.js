@@ -5,7 +5,7 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest'
   },
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
-  moduleDirectories: ['.', 'src'],
+  moduleDirectories: ['node_modules/', 'src'],
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1'
   },

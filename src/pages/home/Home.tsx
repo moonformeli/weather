@@ -1,17 +1,17 @@
 import WeatherController from '@/controllers/weather/WeatherController';
 import { LunaContext, LunaPage } from '@/models/common/interfaces/ILunaPage';
 import { LunaReq } from '@/models/common/interfaces/IServer';
-import { IWeatherCity } from '@/models/weather/interfaces/IWeatherCity';
+import { IWeatherCityInterface } from '@/models/weather/interfaces/IWeatherCityInterface';
 import WeatherHourlyQuery from '@/query/weather/WeatherHourlyQuery';
 import debug from 'debug';
 import React from 'react';
 
 import styles from './Home.scss';
 
-const log = debug('luna:Home');
+const log = debug('Luna:Home');
 
 interface IHomeProps {
-  weather: IWeatherCity;
+  weather: IWeatherCityInterface;
 }
 
 const Home: LunaPage<IHomeProps> = ({ weather }) => {
@@ -34,9 +34,11 @@ Home.getInitialProps = async ({
     apiKey: req.Config.APIKey
   });
   const controller = new WeatherController(query, req);
-  const res = await controller.getCurrentWeather<IWeatherCity>('Seoul');
+  const res = await controller.getCurrentWeather<IWeatherCityInterface>(
+    'Seoul'
+  );
 
-  const weather = res.caseOf<void, IWeatherCity>({
+  const weather = res.caseOf<void, IWeatherCityInterface>({
     left: () => {},
     right: r => {
       return r.data;

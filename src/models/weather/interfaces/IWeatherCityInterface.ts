@@ -77,7 +77,7 @@ interface IsError {
   isError?: boolean;
 }
 
-export interface IWeatherCity extends IsError {
+export interface IWeatherCityInterface extends IsError {
   /* latitude */
   lat: string;
   /* longitude */
