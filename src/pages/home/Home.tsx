@@ -1,6 +1,6 @@
 import WeatherController from '@/controllers/weather/WeatherController';
 import { LunaContext, LunaPage } from '@/models/common/interfaces/ILunaPage';
-import { LunaReq } from '@/models/common/interfaces/IServer';
+import { IServerReq } from '@/models/common/interfaces/IServer';
 import { IWeatherCityInterface } from '@/models/weather/interfaces/IWeatherCityInterface';
 import WeatherHourlyQuery from '@/query/weather/WeatherHourlyQuery';
 import debug from 'debug';
@@ -15,13 +15,12 @@ interface IHomeProps {
 }
 
 const Home: LunaPage<IHomeProps> = ({ weather }) => {
-  console.dir(weather);
-  return <h1 className={styles.container}>Home</h1>;
+  return <h1 className={styles.container}>{weather}</h1>;
 };
 
 Home.getInitialProps = async ({
   req
-}: LunaContext<LunaReq>): Promise<IHomeProps> => {
+}: LunaContext<IServerReq>): Promise<IHomeProps> => {
   log('getInitialProps', !!req);
   const defaultWeather = { weather: { isError: true } };
 

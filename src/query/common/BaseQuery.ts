@@ -7,7 +7,7 @@ import url, { UrlObject } from 'url';
 interface IBaseQuery {
   prefix?: string;
   baseURL: string;
-  apiKey: string;
+  apiKey?: string;
 }
 
 export default class BaseQuery implements IBaseQuery {
@@ -23,7 +23,6 @@ export default class BaseQuery implements IBaseQuery {
 
   // FIXME: Config 에서 프로토콜을 분리할 수 있게되면 여기도 추가 작업 필요하다
   getQuery(config: UrlObject) {
-    // log('getQuery');
     return url.format(config);
   }
 }

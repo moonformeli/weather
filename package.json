@@ -7,7 +7,7 @@
     "dev": "nodemon",
     "build": "next build",
     "start": "next start",
-    "test": "jest",
+    "test": "jest --updateSnapshot",
     "schema": "nodemon --config nodemon.schema.json"
   },
   "keywords": [],
@@ -16,6 +16,7 @@
   "dependencies": {
     "autobind-decorator": "^2.4.0",
     "axios": "^0.19.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "fp-ts": "^2.4.4",
     "http-status-codes": "^1.4.0",

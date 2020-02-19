@@ -9,4 +9,5 @@ export default (() => {
   if (process.env.RUN_MODE === 'development') {
     return new ConfigDev();
   }
+  return new ConfigDev();
 })();

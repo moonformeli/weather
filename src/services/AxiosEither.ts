@@ -1,6 +1,7 @@
 import autobind from 'autobind-decorator';
 import { AxiosResponse } from 'axios';
 
+// TODO: do 를 만들어야 한다
 export interface IAxiosEitherResponse<T>
   extends Pick<AxiosResponse<T>, 'data' | 'status' | 'statusText'> {}
 

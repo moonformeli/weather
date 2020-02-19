@@ -3,13 +3,13 @@
  */
 interface IWeatherData {
   /* Unix Timestamp at UTC time */
-  ts: Date;
+  ts: number;
   /* Timestamp at local time */
-  timestamp_local: Date;
+  timestamp_local: string;
   /* Timestamp at UTC time */
-  timestamp_utc: Date;
+  timestamp_utc: string;
   /* [DEPRECATED] Forecast Valid hour UTC (YYYY-MM-DD:HH) */
-  datetime: Date;
+  datetime: string;
   /* Wind gust speed (Default m/s) */
   wind_gust_spd: number;
   /* Wind speed (Default m/s) */
@@ -43,7 +43,7 @@ interface IWeatherData {
   weather: {
     /* https://www.weatherbit.io/api/codes */
     icon: string;
-    code: string;
+    code: number;
     /* Text weather description */
     description: string;
   };

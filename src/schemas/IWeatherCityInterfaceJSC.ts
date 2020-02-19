@@ -44,16 +44,16 @@ export default {
       "type": "object",
       "properties": {
         "ts": {
-          "$ref": "#/definitions/Date"
+          "type": "number"
         },
         "timestamp_local": {
-          "$ref": "#/definitions/Date"
+          "type": "string"
         },
         "timestamp_utc": {
-          "$ref": "#/definitions/Date"
+          "type": "string"
         },
         "datetime": {
-          "$ref": "#/definitions/Date"
+          "type": "string"
         },
         "wind_gust_spd": {
           "type": "number"
@@ -107,7 +107,7 @@ export default {
               "type": "string"
             },
             "code": {
-              "type": "string"
+              "type": "number"
             },
             "description": {
               "type": "string"
@@ -190,11 +190,6 @@ export default {
         "wind_gust_spd",
         "wind_spd"
       ]
-    },
-    "Date": {
-      "description": "Enables basic storage and retrieval of dates and times.",
-      "type": "string",
-      "format": "date-time"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"

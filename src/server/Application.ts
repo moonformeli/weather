@@ -1,8 +1,10 @@
 import Config from '@/config/Config';
-import { LunaReq } from '@/models/common/interfaces/IServer';
+import { TNext, TRequest, TResponse } from '@/models/common/interfaces/IServer';
+import WeatherRoute from '@/server/router/WeatherRouter';
 import routes from '@/server/routes';
+import cors from 'cors';
 import debug from 'debug';
-import express, { Request } from 'express';
+import express from 'express';
 import next from 'next';
 
 const log = debug('Luna:Application');
@@ -12,20 +14,24 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handler = routes.getRequestHandler(app);
 
-type TRequest = Request & Partial<LunaReq>;
-
 app.prepare().then(() => {
   log('prepare');
-  const server = express();
+  const server = express().use(cors());
+
+  server.use((req: TRequest, _, next: TNext) => {
+    req.Config = Config;
+    next();
+  });
 
   routes['routes'].forEach(({ pattern, page }) => {
-    server.get(pattern, (req: TRequest, res) => {
+    server.get(pattern, (req: TRequest, res: TResponse) => {
       log(pattern, page);
-      req.Config = Config;
       app.render(req, res, page, { ...req.query, ...req.params });
     });
   });
-  server.route('*').get((req, res) => handler(req, res));
+  server.use(new WeatherRoute().routes());
+
+  server.route('*').get((req: TRequest, res: TResponse) => handler(req, res));
 
   server.listen(port, err => {
     if (err) throw err;

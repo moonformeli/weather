@@ -1,4 +1,4 @@
-import { lstatSync, readdirSync, unlink, unlinkSync, writeFileSync } from 'fs';
+import { lstatSync, readdirSync, unlinkSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 
 import debug from 'debug';
