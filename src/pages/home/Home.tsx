@@ -15,7 +15,7 @@ interface IHomeProps {
 }
 
 const Home: LunaPage<IHomeProps> = ({ weather }) => {
-  return <h1 className={styles.container}>{weather}</h1>;
+  return <h1 className={styles.container}>{weather.city_name}</h1>;
 };
 
 Home.getInitialProps = async ({

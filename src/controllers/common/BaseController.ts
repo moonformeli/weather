@@ -32,7 +32,7 @@ export default class BaseController<
     });
   }
 
-  protected async call<T>(config: TRequestConfig) {
+  protected async call<T>(JSC: Record<string, any>, config: TRequestConfig) {
     const url = this.getURL(config);
 
     log('call', url, config);
@@ -40,7 +40,7 @@ export default class BaseController<
 
     switch (method.toUpperCase()) {
       case 'GET':
-        return await this.get<T>(url, config);
+        return await this.get<T>(JSC, url, config);
       default:
         return Promise.reject();
     }

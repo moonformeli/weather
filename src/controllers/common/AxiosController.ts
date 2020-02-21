@@ -1,3 +1,5 @@
+import { validate } from '@/utils/schema';
+import ajv from 'ajv';
 import axios, { AxiosRequestConfig } from 'axios';
 import debug from 'debug';
 import HttpStatusCodes from 'http-status-codes';
@@ -14,11 +16,38 @@ export default class AxiosController {
     );
   }
 
-  protected async get<T>(url: string, config: Omit<AxiosRequestConfig, 'url'>) {
+  private isValid<T>(
+    JSC: Record<string, any>,
+    data: T
+  ):
+    | {
+        valid: boolean;
+        error: ajv.ErrorObject[];
+      }
+    | {
+        valid: boolean;
+        error: null;
+      } {
+    const valid = validate(JSC, data);
+    return valid;
+  }
+
+  protected async get<T>(
+    JSC: Record<string, any>,
+    url: string,
+    config: Omit<AxiosRequestConfig, 'url'>
+  ) {
     log('get', url);
 
     try {
       const res = await axios.get<T>(url, config);
+      const valid = this.isValid(JSC, res.data);
+
+      if (!valid.valid) {
+        throw new Error(`JSC has occured an error.
+          ${JSON.stringify(valid.error)}
+        `);
+      }
 
       if (!res || this.isClientError(res.status)) {
         return AxiosEither.left<null>({

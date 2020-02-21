@@ -1,6 +1,7 @@
 import { LunaRequest } from '@/models/common/interfaces/ILunaPage';
 import { IServerReq, TRequest } from '@/models/common/interfaces/IServer';
 import WeatherQuery from '@/query/weather/WeatherHourlyQuery';
+import IWeatherCityInterfaceJSC from '@/schemas/IWeatherCityInterfaceJSC';
 import debug from 'debug';
 
 import BaseController, { TRequestConfig } from '../common/BaseController';
@@ -24,6 +25,6 @@ export default class WeatherController<
       url,
       method: 'get'
     };
-    return await this.call<T>(params);
+    return await this.call<T>(IWeatherCityInterfaceJSC, params);
   }
 }
