@@ -5,8 +5,14 @@ export const validate = (schema: object, data: any) => {
   const valid = AJV.validate(schema, data);
 
   if (!valid && !!AJV.errors) {
-    throw new Error(JSON.stringify(AJV.errors, null, 2));
+    return {
+      valid: false,
+      error: AJV.errors
+    };
   }
 
-  return true;
+  return {
+    valid: true,
+    error: null
+  };
 };

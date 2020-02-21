@@ -1,25 +1,27 @@
 import { validate } from './schema';
 
+const stringify = (data: object) => JSON.stringify(data, null, 2);
+
 export const extendJSC = () => {
   expect.extend({
     toMatchJSC(schema: object, data: object) {
       try {
         const valid = validate(schema, data);
 
-        if (valid) {
+        if (valid.valid) {
           return {
-            message: () => `${schema} shouldn't match ${data}`,
+            message: () => JSON.stringify(valid.error),
             pass: true
           };
         }
         return {
-          message: () => `${schema} should match ${data}`,
+          message: () => JSON.stringify(valid.error),
           pass: false
         };
       } catch (e) {
         return {
           message: () => `
-            ${schema} doesn't match ${data}
+            ${stringify(schema)} doesn't match ${stringify(data)}
             ${e}
           `,
           pass: false
