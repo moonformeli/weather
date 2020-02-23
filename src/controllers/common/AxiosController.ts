@@ -37,11 +37,11 @@ export default class AxiosController {
     url: string,
     config: Omit<AxiosRequestConfig, 'url'>
   ) {
-    log('get', url);
+    log('get', url, config);
 
     try {
       const res = await axios.get<T>(url, config);
-      const valid = this.isValid(JSC, res.data);
+      const valid = this.isValid<T>(JSC, res.data);
 
       if (!valid.valid) {
         throw new Error(`JSC has occured an error.

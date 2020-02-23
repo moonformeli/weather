@@ -1,7 +1,7 @@
 import url from 'url';
 
 import ConfigDev from '@/config/Config.dev';
-import WeatherController from '@/controllers/weather/WeatherController';
+import WeatherHourlyController from '@/controllers/weather/WeatherHourlyController';
 import { IWeatherCityInterface } from '@/models/weather/interfaces/IWeatherCityInterface';
 import WeatherHoulyQuery from '@/query/weather/WeatherHourlyQuery';
 import IWeatherCityInterfaceJSC from '@/schemas/IWeatherCityInterfaceJSC';
@@ -18,7 +18,7 @@ describe('WeatherCity', () => {
         apiKey: Config.APIKey
       });
 
-      const path = weatherQuery.getCityQuery('Seoul');
+      const path = weatherQuery.getHourlyWeatherQuery('Seoul');
       const parsed = url.parse(path);
 
       expect(path).toBe(
@@ -43,7 +43,7 @@ describe('WeatherCity', () => {
           Config
         };
       })();
-      const controller = new WeatherController(
+      const controller = new WeatherHourlyController(
         new WeatherHoulyQuery({
           prefix: '',
           baseURL: Config.ForecastHourlyAPI,
@@ -53,7 +53,7 @@ describe('WeatherCity', () => {
       );
 
       // FIXME: AxiosEither.do 가 생기면 caseOf --> do 로 바꾸자
-      const data = await controller.getCurrentWeather<IWeatherCityInterface>(
+      const data = await controller.getHourlyWeather<IWeatherCityInterface>(
         'Seoul'
       );
 
@@ -63,8 +63,6 @@ describe('WeatherCity', () => {
       }) as IWeatherCityInterface;
 
       expect(data).toMatchSnapshot();
-      // FIXME: extend 로 추가한 녀석에 대한 타입을 못 읽는다!!!
-      // 테스트는 성공..
       expect(IWeatherCityInterfaceJSC).toMatchJSC(weather);
       done();
     });

@@ -1,7 +1,7 @@
 import BaseQuery from '../common/BaseQuery';
 
 export default class WeatherHoulyQuery extends BaseQuery {
-  getCityQuery(city: string) {
+  getHourlyWeatherQuery(city: string) {
     return this.getQuery({
       protocol: '',
       host: this.baseURL,

@@ -1,0 +1,10 @@
+@import '../models/common/styles';
+
+:global(html) {
+  font-size: 62.5%;
+}
+
+.container {
+  width: $maxWidthMW;
+  margin: 0 auto;
+}

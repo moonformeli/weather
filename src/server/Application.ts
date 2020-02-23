@@ -1,3 +1,5 @@
+import { resolve } from 'path';
+
 import Config from '@/config/Config';
 import { TNext, TRequest, TResponse } from '@/models/common/interfaces/IServer';
 import WeatherRoute from '@/server/router/WeatherRouter';

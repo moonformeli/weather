@@ -16,8 +16,14 @@ export default class WeatherRoute extends CommonRouter {
 
   routes() {
     log('routes');
+
     this.setRoute(ENRouteType.GET)(
       '/v2.0/forecast/hourly',
+      this.controller.getHourlyWeather
+    );
+
+    this.setRoute(ENRouteType.GET)(
+      '/v2.0/current',
       this.controller.getCurrentWeather
     );
 

@@ -6,7 +6,7 @@ import url, { UrlObject } from 'url';
 
 interface IBaseQuery {
   prefix?: string;
-  baseURL: string;
+  baseURL?: string;
   apiKey?: string;
 }
 

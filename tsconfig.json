@@ -13,7 +13,7 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "baseUrl": "./",
-    "typeRoots": ["node_modules/@types", "src/typings"],
+    "typeRoots": ["./node_modules/@types", "./src/typings"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -25,11 +25,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "!node_modules/@types",
-    ".next",
-    "src/**/__tests__/*.ts"
-  ],
+  "exclude": ["node_modules", "!node_modules/@types", ".next"],
   "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"]
 }

@@ -1,10 +1,13 @@
-import WeatherController from '@/controllers/weather/WeatherController';
+import WeatherCurrentController from '@/controllers/weather/WeatherCurrentController';
+import WeatherHourlyController from '@/controllers/weather/WeatherHourlyController';
 import { LunaContext, LunaPage } from '@/models/common/interfaces/ILunaPage';
 import { IServerReq } from '@/models/common/interfaces/IServer';
 import { IWeatherCityInterface } from '@/models/weather/interfaces/IWeatherCityInterface';
+import { IWeatherCurrentInterface } from '@/models/weather/interfaces/IWeatherCurrentInterface';
+import WeatherCurrentQuery from '@/query/weather/WeatherCurrentQuery';
 import WeatherHourlyQuery from '@/query/weather/WeatherHourlyQuery';
 import debug from 'debug';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './Home.scss';
 
@@ -15,7 +18,31 @@ interface IHomeProps {
 }
 
 const Home: LunaPage<IHomeProps> = ({ weather }) => {
-  return <h1 className={styles.container}>{weather.city_name}</h1>;
+  console.dir(weather);
+
+  useEffect(() => {
+    (async () => {
+      const currentQuery = new WeatherCurrentQuery({});
+      const currentController = new WeatherCurrentController(currentQuery);
+
+      const res = await currentController.getCurrentWeather<
+        IWeatherCurrentInterface
+      >({ city: 'Seoul' });
+      const current = res.caseOf<void, IWeatherCurrentInterface>({
+        left: () => {},
+        right: r => r.data
+      });
+
+      console.log(current);
+    })();
+  }, []);
+
+  return (
+    <h1 className={styles.container}>
+      {weather.city_name}
+      <img src={'/static/images/a01d.png'} />
+    </h1>
+  );
 };
 
 Home.getInitialProps = async ({
@@ -32,10 +59,9 @@ Home.getInitialProps = async ({
     baseURL: req.Config.ForecastHourlyAPI,
     apiKey: req.Config.APIKey
   });
-  const controller = new WeatherController(query, req);
-  const res = await controller.getCurrentWeather<IWeatherCityInterface>(
-    'Seoul'
-  );
+  const controller = new WeatherHourlyController(query, req);
+
+  const res = await controller.getHourlyWeather<IWeatherCityInterface>('Seoul');
 
   const weather = res.caseOf<void, IWeatherCityInterface>({
     left: () => {},

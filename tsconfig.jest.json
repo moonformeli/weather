@@ -6,11 +6,10 @@
     "target": "es6",
     "isolatedModules": false,
     "noEmit": false,
-    "types": [],
     "typeRoots": ["node_modules/@types", "src/typings"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/__tests__/*.ts"]
+  "include": ["./src/**/__tests__/*.ts"]
 }
