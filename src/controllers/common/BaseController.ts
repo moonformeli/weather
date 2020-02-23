@@ -1,6 +1,5 @@
 import URL from 'url';
 
-import Config from '@/config/Config';
 import { LunaRequest } from '@/models/common/interfaces/ILunaPage';
 import { IServerReq, TRequest } from '@/models/common/interfaces/IServer';
 import { AxiosRequestConfig } from 'axios';
@@ -27,7 +26,6 @@ export default class BaseController<
     const parsed = URL.parse(config.url);
     return URL.format({
       ...parsed,
-      host: Config.Local,
       pathname: `api/${parsed.pathname}`.replace(/\/+/g, '/')
     });
   }

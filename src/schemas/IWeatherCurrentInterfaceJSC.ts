@@ -9,6 +9,9 @@ export default {
       "items": {
         "$ref": "#/definitions/IWeatherCurrentData"
       }
+    },
+    "isError": {
+      "type": "boolean"
     }
   },
   "required": [

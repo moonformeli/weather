@@ -79,7 +79,11 @@ interface IWeatherCurrentData {
   h_angle: number;
 }
 
-export interface IWeatherCurrentInterface {
+interface IWeatherCurrentError {
+  isError?: boolean;
+}
+
+export interface IWeatherCurrentInterface extends IWeatherCurrentError {
   /* Count of returned observations. */
   count: number;
   data: IWeatherCurrentData[];

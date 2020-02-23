@@ -1,9 +1,5 @@
 import url, { UrlObject } from 'url';
 
-// import debug from 'debug';
-
-// const log = debug('Luna:BaseQuery');
-
 interface IBaseQuery {
   prefix?: string;
   baseURL?: string;
