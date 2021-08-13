@@ -20,7 +20,7 @@
     "express": "^4.17.1",
     "fp-ts": "^2.4.4",
     "http-status-codes": "^1.4.0",
-    "next": "^9.2.1",
+    "next": "^11.1.0",
     "next-routes": "^1.4.2",
     "nodemon": "^2.0.2",
     "react": "^16.12.0",
